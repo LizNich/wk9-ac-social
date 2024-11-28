@@ -28,9 +28,7 @@ export default function NewPostPage() {
       </h2>
 
       <form action={handleAddPost} className="space-y-4">
-        <label className="block font-medium mb-2" v>
-          Username:
-        </label>
+        <label className="block font-medium mb-2">Username:</label>
         <input
           name="username"
           placeholder="Your Name"

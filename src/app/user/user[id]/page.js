@@ -4,8 +4,12 @@
 
 export default function UserPage() {
   return (
-    <div>
-      <h2>OTHER Profile</h2>
-    </div>
+    <body className="bg-[url('../assets/background_b.jpg')] bg-cover bg-center h-screen ">
+      <div>
+        <h2 className="bg-[#fffffa] bg-opacity-70 text-black text-center mt-4 p-2 w-full text-2xl font-bold mb-10">
+          OTHER Profile
+        </h2>
+      </div>
+    </body>
   );
 }

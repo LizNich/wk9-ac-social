@@ -27,16 +27,16 @@ export default function RootLayout({ children }) {
               <nav className="text-xl font-bold">
                 <Link href="/">Welcome Home!</Link> |
                 <Link href="/posts">All Posts</Link> |
-                <Link href="/posts/new">Add a New Post</Link>
+                <Link href="/posts/new">Add a New Post</Link> |
+                <Link href="/user">My Profile</Link> |
                 <SignedOut>
-                  <SignInButton />
+                  <SignInButton className="bg-gray-500 text-white w-24 py-1 ml-2 rounded text-sm font-bold hover:bg-blue-600 transition" />
                 </SignedOut>
                 <SignedIn>
                   <UserButton />
                 </SignedIn>
               </nav>
             </header>
-
             <main>{children}</main>
             <footer className="bg-[#9DFFB0] text-black text-center mt-0 p-2 sticky">
               <p>&copy; The Animal Crossing Collective 2024</p>
