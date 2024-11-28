@@ -1,4 +1,6 @@
-// This is the form to allow users to make a new post
+// This is the -NEW POST- page
+// The form allows users to make a new post
+// and returns to the post page
 
 import { db } from "@/utils/db";
 import { redirect } from "next/navigation";

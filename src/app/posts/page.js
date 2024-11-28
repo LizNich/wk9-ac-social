@@ -1,5 +1,6 @@
-// This page shows all the posts with a sort option
-// and imports a delete post button that doesn't work yet
+// This is -POSTS- page
+// It shows ALL the posts with a sort option
+// and imports a delete post button
 
 import Link from "next/link";
 import { db } from "@/utils/db";
@@ -9,6 +10,7 @@ export default async function PostsPage({ searchParams }) {
   const result = await db.query(`SELECT * FROM posts`);
   const posts = result.rows;
 
+  // Sorting logic
   if (searchParams.sort === "asc") {
     posts.sort((a, b) => a.villager.localeCompare(b.villager)); // A-Z
   } else if (searchParams.sort === "desc") {
@@ -51,7 +53,7 @@ export default async function PostsPage({ searchParams }) {
                   <p>Why? - {post.reason}</p>
                   <p className="text-gray-300">Click for Comments ❤️</p>
                 </Link>
-                <DeletePost />
+                <DeletePost postID={post.id} />
               </li>
             );
           })}

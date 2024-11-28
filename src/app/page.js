@@ -1,4 +1,5 @@
-// This is my Home page
+// This is the -HOME- page
+
 import Link from "next/link";
 
 export default function HomePage() {

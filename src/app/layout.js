@@ -1,3 +1,5 @@
+// This is the -LAYOUT- Page
+
 import Link from "next/link";
 import "./globals.css";
 import { Gluten } from "next/font/google";

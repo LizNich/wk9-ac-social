@@ -1,5 +1,6 @@
-// This is the new comment form - currently on a separate page
-// It adds a comment and returns to the previous page
+// This is the -NEW COMMENT FORM- page
+// The form is currently on this separate page
+// It adds a comment and returns back to the comments page
 
 import { db } from "@/utils/db";
 import { redirect } from "next/navigation";
