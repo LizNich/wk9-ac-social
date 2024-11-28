@@ -1,7 +1,4 @@
-// https://clerk.com/docs/references/nextjs/custom-signup-signin-pages
-// catch all dynamic rout seg
-
-// This is the SIGN-IN box
+// This is the -SIGN-IN- box
 // puts the clerk sign-in component on my home page
 
 import { SignIn } from "@clerk/nextjs";
@@ -18,3 +15,6 @@ export default function Page() {
     </div>
   );
 }
+
+// https://clerk.com/docs/references/nextjs/custom-signup-signin-pages
+// catch all dynamic rout seg

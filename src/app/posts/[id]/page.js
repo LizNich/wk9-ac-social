@@ -1,6 +1,4 @@
-// This is the -COMMENTS- page
-// It has a link to another page to add a new comment
-
+// This is the comments page with a link to add a new comment
 import { db } from "@/utils/db";
 import { redirect } from "next/navigation";
 import Link from "next/link";

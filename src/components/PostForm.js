@@ -1,25 +1,19 @@
-// This is the -NEW POST- page
-// The form allows users to make a new post
-// and returns to the post page
-
 import { db } from "@/utils/db";
-import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
-export default function NewPostPage() {
-  async function handleAddPost(formData) {
+export default async function PostForm() {
+  const { userId } = await auth();
+  async function handleSubmit(formData) {
     "use server";
+    const content = formData.get("content");
 
-    const username = formData.get("username");
-    const villager = formData.get("villager");
-    const reason = formData.get("reason");
-
-    // Puts data INTO database
-    await db.query(
-      `INSERT INTO posts (username, villager, reason) VALUES ($1, $2, $3)`,
-      [username, villager, reason]
+    db.query(
+      `INSERT INTO posts (villager, reason, clerk_id) VALUES ($1, $2,$3)`,
+      [villager, reason, userId]
     );
 
-    redirect("/posts");
+    revalidatePath("/posts");
   }
 
   return (
@@ -29,12 +23,6 @@ export default function NewPostPage() {
       </h2>
 
       <form action={handleAddPost} className="space-y-4">
-        <label className="block font-medium mb-2">Username:</label>
-        <input
-          name="username"
-          placeholder="Your Name"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        />
         <label className="block font-medium mb-2">Favourite Villager:</label>
         <input
           name="villager"

@@ -1,64 +1,65 @@
 // This is -POSTS- page
-// It shows ALL the posts with a sort option
-// and imports a delete post button
+// It shows ALL the posts
 
-import Link from "next/link";
+import PostForm from "@/components/PostForm";
+import UserForm from "@/components/UserForm";
 import { db } from "@/utils/db";
-import { DeletePost } from "@/components/DeletePost";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import Link from "next/link";
 
-export default async function PostsPage({ searchParams }) {
-  const result = await db.query(`SELECT * FROM posts`);
-  const posts = result.rows;
+export default async function PostsPage() {
+  const { userId } = await auth();
 
-  // Sorting logic
-  if (searchParams.sort === "asc") {
-    posts.sort((a, b) => a.villager.localeCompare(b.villager)); // A-Z
-  } else if (searchParams.sort === "desc") {
-    posts.sort((a, b) => b.villager.localeCompare(a.villager)); // Z-A
-  }
+  // get all the posts
+  const responsePosts = await db.query(`
+    SELECT
+      posts.id,
+      posts.villager,
+      posts.reason,
+      users.username,
+      users.id as user_id
+    FROM posts
+    JOIN users ON posts.clerk_id = users.clerk_id`);
+  const posts = responsePosts.rows;
+
+  // check if the user has a username in the db
+  const responseUser = await db.query(
+    `SELECT * FROM users WHERE clerk_id = '${userId}'`
+  );
+  const numUsers = responseUser.rowCount;
 
   return (
     <div>
-      <div className="flex justify-between items-center w-full max-w-2xl mx-auto p-4">
-        <div className="flex">
-          <Link href="/posts?sort=asc">Sort A-Z by Villager</Link>
-          <span>|</span>
-          <Link href="/posts?sort=desc">Sort Z-A by Villager</Link>
-        </div>
-
-        <div> {"  "} </div>
-
-        <div>
-          <Link href="/posts/new">
-            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-48">
-              Add a new post
-            </button>
-          </Link>
-        </div>
-      </div>
-      <h2 className="bg-[#fffffa] bg-opacity-70 text-black text-center mt-4 p-2 w-full text-2xl font-bold">
-        Who is your favourite Villager... and why?
+      <h2 className="bg-[#0c5e26] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
+        {" "}
+        MY NEW ALL POSTS PAGE WITH A FORM AT THE TOP INSTEAD OF A SEPARATE PAGE
       </h2>
-      <section className="post-container px-4 py-4">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {posts.map((post) => {
-            return (
-              <li
-                key={post.id}
-                className="bg-blue-500 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform"
-              >
-                <Link href={`/posts/${post.id}`}>
-                  <p> {post.username} </p>
-                  <p>Favourite Villager - {post.villager}</p>
-                  <p>Why? - {post.reason}</p>
-                  <p className="text-gray-300">Click for Comments ❤️</p>
-                </Link>
-                <DeletePost postID={post.id} />
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <p className="bg-[#c11cb3] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
+        Form goes here below OR a please sign in to post alert
+      </p>
+      <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
+      <SignedOut>
+        <Link href="/sign-in" className="text-white">
+          {" "}
+          Please sign in to make a post alert
+        </Link>
+      </SignedOut>
+
+      <p className="bg-[#c11cb3] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
+        ALL POSTS show below with username, fave villager and why
+      </p>
+      {posts.map((post) => {
+        return (
+          <div key={post.id}>
+            <h3>
+              <Link href={`/user/${post.user_id}`}>{post.username}</Link> says
+            </h3>
+            <p>{post.villager}</p>
+            <p>{post.reason}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
