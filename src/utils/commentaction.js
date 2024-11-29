@@ -1,10 +1,10 @@
-// This is the comments page with a link to add a new comment
-import { db } from "@/utils/db";
-import { redirect } from "next/navigation";
+// This is the comments page workings
+"use server";
+//import { revalidatePath } from "next/cache";
+import { db } from "./db";
 import Link from "next/link";
-//import { NewCommentPage } from "@/components/commentform"; //correct but couldn't get this to work
 
-export default async function SinglePostPage({ params }) {
+export async function commentAction({ params }) {
   const { id } = params;
 
   // = the post
@@ -17,14 +17,12 @@ export default async function SinglePostPage({ params }) {
     [id]
   );
   const comments = commentsResult.rows; // = all rows
+  deleteAction(postID);
+  // revalidatePath("/posts");
 
   return (
     <div className="flex justify-center items-center">
       <div>
-        <h2 className="bg-[#fffffa] bg-opacity-70 text-black text-center mt-6 p-2 w-full text-2xl font-bold mb-0">
-          {post.username}&apos;s favourite villager is ...🍃
-          {post.villager}🍃
-        </h2>
         <ul>
           <li key={post.id}>
             <Link href={`/posts/${post.id}`}>
