@@ -27,7 +27,6 @@ export default function RootLayout({ children }) {
               <nav className="text-xl font-bold">
                 <Link href="/">Welcome Home!</Link> |
                 <Link href="/posts">All Posts</Link> |
-                <Link href="/posts/new">Add a New Post</Link> |
                 <Link href="/user">My Profile</Link> |
                 <SignedOut>
                   <SignInButton className="bg-gray-500 text-white w-24 py-1 ml-2 rounded text-sm font-bold hover:bg-blue-600 transition" />

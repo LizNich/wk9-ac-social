@@ -1,4 +1,5 @@
 // This is -POSTS- page
+// AND contains a link to a new POSTFORM and to a new USERFORM
 // It shows ALL the posts
 
 import PostForm from "@/components/PostForm";
@@ -8,14 +9,16 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
+// fetches posts and user information, determines what components to show, and renders them.
+// gets userID of signed-in user - otherwise user is NULL
 export default async function PostsPage() {
   const { userId } = await auth();
 
-  // get all the posts
+  // Fetching the posts
   const responsePosts = await db.query(`
     SELECT
       posts.id,
-      posts.villager,
+      posts.villager, 
       posts.reason,
       users.username,
       users.id as user_id
@@ -23,32 +26,35 @@ export default async function PostsPage() {
     JOIN users ON posts.clerk_id = users.clerk_id`);
   const posts = responsePosts.rows;
 
-  // check if the user has a username in the db
+  // check user is in the db
   const responseUser = await db.query(
     `SELECT * FROM users WHERE clerk_id = '${userId}'`
   );
   const numUsers = responseUser.rowCount;
 
+  // renders the page
+  // checks signed-in state. if user is signed-in (===1) shows PostForm. If not show UserForm (to sign-up)
+  // if user is signed-out, tells user to sign-in
+  // then displays posts. each post has a link to authors profile, then user_name and content
+
+  // Sort logic
+  // if (searchParams.sort === "asc") {
+  //   posts.sort((a, b) => a.villager.localeCompare(b.villager)); // A-Z
+  // } else if (searchParams.sort === "desc") {
+  //   posts.sort((a, b) => b.villager.localeCompare(a.villager)); // Z-A
+  // }
+
   return (
     <div>
-      <h2 className="bg-[#0c5e26] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
-        {" "}
-        MY NEW ALL POSTS PAGE WITH A FORM AT THE TOP INSTEAD OF A SEPARATE PAGE
-      </h2>
-      <p className="bg-[#c11cb3] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
-        Form goes here below OR a please sign in to post alert
-      </p>
-      <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
-      <SignedOut>
-        <Link href="/sign-in" className="text-white">
-          {" "}
-          Please sign in to make a post alert
-        </Link>
-      </SignedOut>
+      <h2>Posts</h2>
 
-      <p className="bg-[#c11cb3] bg-opacity-70 text-white  mt-4 p-2 w-full text-sm font-bold mb-10">
-        ALL POSTS show below with username, fave villager and why
-      </p>
+      <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
+
+      <SignedOut>
+        <Link href="/sign-in">Please sign in to make a post</Link>
+      </SignedOut>
+      <br></br>
+      <p>POSTS GO BELOW HERE</p>
       {posts.map((post) => {
         return (
           <div key={post.id}>
