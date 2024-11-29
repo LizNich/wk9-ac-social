@@ -1,16 +1,15 @@
 // This is the -OTHER USER USER PROFILE- page
 // it uses the user_id from the params to get the users information
-// = someone elses profile
+// when you click on someone elses username
 
 import { db } from "@/utils/db";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
-export default async function PostsPage() {
-  const { userId } = await auth(); // Get the signed-in user's clerk_id
+export default async function SinglePostPage({ params }) {
+  const { userId } = params; // Get the clerk_id for the selected user
 
-  // Query for posts specific to the signed-in user
+  // Query for posts specific to the SELECTED user
   const responsePosts = await db.query(`
     SELECT
       posts.id,
@@ -20,7 +19,7 @@ export default async function PostsPage() {
       users.id as user_id
     FROM posts
     JOIN users ON posts.clerk_id = users.clerk_id
-    WHERE posts.clerk_id = '${userId}'
+     WHERE posts.clerk_id = '${userId}'
   `);
 
   const posts = responsePosts.rows;
@@ -31,11 +30,15 @@ export default async function PostsPage() {
   `);
 
   const numUsers = responseUser.rowCount;
-
   return (
     <div>
-      <h2>Posts</h2>
-      <p>Here we can show the posts for the signed-in user from the database</p>
+      <h1>Posts for ADD LINK TO USERNAME</h1>
+      <br></br>
+      <h2>Bio on the left - DATA FROM THE USER PROFILE FORM </h2>
+      <p>length of service...</p>
+      <br></br>
+      <h2>Posts on the right = with NO delete button</h2>
+      <p>Here we show the posts for the selected user </p>
       {posts.map((post) => {
         return (
           <div key={post.id}>
@@ -44,6 +47,7 @@ export default async function PostsPage() {
             </h3>
             <p>{post.villager}</p>
             <p>{post.reason}</p>
+            <br></br>
           </div>
         );
       })}

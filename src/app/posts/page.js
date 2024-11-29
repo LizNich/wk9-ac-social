@@ -63,6 +63,7 @@ export default async function PostsPage() {
             </h3>
             <p>{post.villager}</p>
             <p>{post.reason}</p>
+            <br></br>
           </div>
         );
       })}
