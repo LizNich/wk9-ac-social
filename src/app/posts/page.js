@@ -44,12 +44,12 @@ export default async function PostsPage() {
   //   posts.sort((a, b) => b.villager.localeCompare(a.villager)); // Z-A
   // }
 
+  // Fetching the comments
+
   return (
     <div>
       <h2>Posts</h2>
-
       <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
-
       <SignedOut>
         <Link href="/sign-in">Please sign in to make a post</Link>
       </SignedOut>
