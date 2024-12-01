@@ -121,6 +121,7 @@ export default async function BioForm() {
 
           <div>
             <label className="block font-semibold mb-0">Season:</label>
+
             <input
               name="season"
               placeholder="season"

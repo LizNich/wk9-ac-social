@@ -35,7 +35,7 @@ WHERE posts.clerk_id = '${[userId]}'
   const numUsers = responseUser.rowCount;
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-4 mt-10 mb-10">
+    <div className="flex flex-col md:flex-row gap-4 p-4 mt-4 mb-10">
       <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-4">
           <p>${userId}</p> PROFILE
