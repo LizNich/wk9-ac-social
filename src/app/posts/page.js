@@ -38,27 +38,37 @@ export default async function PostsPage() {
 
   return (
     <div>
-      <h2>Posts</h2>
-      <SignedIn>
-        <PostForm />
-      </SignedIn>
-      <SignedOut>
-        <Link href="/sign-in">Please sign in to make a post</Link>
-      </SignedOut>
+      <div className="flex justify-between items-center w-full max-w-2xl mx-auto p-4">
+        {" "}
+        <SignedIn>
+          <PostForm />
+        </SignedIn>
+        <SignedOut>
+          <Link href="/sign-in">Please sign in to make a post</Link>
+        </SignedOut>{" "}
+      </div>
+
       <br></br>
-      <p>POSTS GO BELOW HERE</p>
-      {posts.map((post) => {
-        return (
-          <div key={post.id}>
-            <h3>
-              <Link href={`/user/${post.user_id}`}>{post.username}</Link> says
-            </h3>
-            <p>{post.villager}</p>
-            <p>{post.reason}</p>
-            <br></br>
-          </div>
-        );
-      })}
+      <h2 className="bg-[#fffffa] bg-opacity-70 text-black text-center mt-0 p-2 w-full text-2xl font-bold">
+        Who is your favourite Villager... and why?
+      </h2>
+      <section className="post-container px-4 py-2">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {posts.map((post) => {
+            return (
+              <li
+                key={post.id}
+                className="bg-green-500 text-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform"
+              >
+                <Link href={`/user/${post.user_id}`}>{post.username}</Link> says
+                <p>{post.villager}</p>
+                <p>{post.reason}</p>
+                <br></br>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </div>
   );
 }

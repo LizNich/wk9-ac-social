@@ -23,19 +23,19 @@ export default async function OtherProfilePage() {
       users.id as user_id
 FROM posts
 JOIN users ON posts.clerk_id = users.clerk_id
-WHERE posts.clerk_id = '${/user/[userId]}'
+WHERE posts.clerk_id = '${[userId]}'
   `
   );
   const posts = responsePosts.rows;
 
   // Fetch user info - FOR THE OTHER USER
   const responseUser = await db.query(`
-    SELECT * FROM users WHERE clerk_id = '${/user/[userId]}'
+    SELECT * FROM users WHERE clerk_id = '${[userId]}'
   `);
   const numUsers = responseUser.rowCount;
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-4">
+    <div className="flex flex-col md:flex-row gap-4 p-4 mt-10 mb-10">
       <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-4">
           <p>${userId}</p> PROFILE
@@ -56,9 +56,9 @@ WHERE posts.clerk_id = '${/user/[userId]}'
             </ul>
           </div>
         )}
-        <div></div>
       </div>
-      <div className="flex-1 bg-white p-4 rounded-lg shadow-md">
+
+      <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-4">
           <p>${userId}</p> POSTS
         </h2>

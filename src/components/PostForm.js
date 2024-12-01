@@ -31,11 +31,28 @@ export default async function PostForm() {
   }
 
   return (
-    <form action={handleSubmit}>
-      <p>Add Radix Form HERE or Format the form like wk8</p>
-      <input name="villager" placeholder="Favourite Villager" />
-      <input name="reason" placeholder="Why?" />
-      <button>Submit</button>
+    <form
+      action={handleSubmit}
+      className="flex flex-col items-center space-y-4"
+    >
+      <h2 className="bg-[#fffffa] bg-opacity-70 text-black text-center mt-0 p-2 w-full text-2xl font-bold">
+        Post a new favourite here!
+      </h2>
+      <div className="flex space-x-4">
+        <input
+          name="villager"
+          placeholder="Favourite Villager"
+          className="p-2 border border-gray-300 rounded-lg"
+        />
+        <input
+          name="reason"
+          placeholder="Why?"
+          className="p-2 border border-gray-300 rounded-lg"
+        />
+        <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-48">
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

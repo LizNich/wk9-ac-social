@@ -40,14 +40,14 @@ export default async function BioForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h2 className="bg-[#bebe87] bg-opacity-70 text-black text-center mb-6 p-2 text-2xl font-bold">
+    <div className="min-h-screen flex items-center justify-center mt-4 mb-4">
+      <div className="bg-white shadow-lg rounded-lg p-2 max-w-md w-full">
+        <h2 className="text-black text-center mb-6 p-2 text-2xl font-bold">
           Add and Update your Profile
         </h2>
         <form action={handleFormSubmit} className="space-y-4">
           <div>
-            <label className="block font-semibold mb-1">
+            <label className="block font-semibold mb-0">
               My Island is called:
             </label>
             <input
@@ -58,7 +58,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">
+            <label className="block font-semibold mb-0">
               My Character is called:
             </label>
             <input
@@ -71,7 +71,7 @@ export default async function BioForm() {
           <h2 className="text-lg font-bold mt-4">My Favourite...</h2>
 
           <div>
-            <label className="block font-semibold mb-1">
+            <label className="block font-semibold mb-0">
               Villager Personality:
             </label>
             <input
@@ -82,7 +82,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">
+            <label className="block font-semibold mb-0">
               Special Character:
             </label>
             <input
@@ -93,7 +93,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">Store:</label>
+            <label className="block font-semibold mb-0">Store:</label>
             <input
               name="store"
               placeholder="store"
@@ -102,7 +102,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">Flower:</label>
+            <label className="block font-semibold mb-0">Flower:</label>
             <input
               name="flower"
               placeholder="flower"
@@ -111,7 +111,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">Celebration Day:</label>
+            <label className="block font-semibold mb-0">Celebration Day:</label>
             <input
               name="celebration"
               placeholder="celebration day"
@@ -120,7 +120,7 @@ export default async function BioForm() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">Season:</label>
+            <label className="block font-semibold mb-0">Season:</label>
             <input
               name="season"
               placeholder="season"
@@ -130,7 +130,7 @@ export default async function BioForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#bebe87] text-black font-bold py-2 px-4 rounded mt-4 hover:bg-[#a9a960] transition"
+            className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-48"
           >
             Submit
           </button>

@@ -32,7 +32,9 @@ export default async function UserForm() {
   return (
     <form action={handleSubmit}>
       <input name="username" placeholder="Username" />
-      <button>Submit</button>
+      <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-48">
+        Submit
+      </button>
     </form>
   );
 }

@@ -61,7 +61,7 @@ WHERE posts.clerk_id = '${userId}'
         )}
         <div>
           <Link href="/user/form">
-            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-full">
+            <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-200">
               Add or Edit Profile
             </button>
           </Link>
