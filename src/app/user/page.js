@@ -62,7 +62,7 @@ WHERE posts.clerk_id = '${userId}'
           </div>
         )}
         <div>
-          <Link href="/user/bioform">
+          <Link href="/user/form">
             <button className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition text-1xl font-bold flex justify-center items-center w-full">
               Add or Edit Profile
             </button>

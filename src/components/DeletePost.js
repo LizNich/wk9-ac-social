@@ -2,7 +2,6 @@
 
 "use client";
 import { deleteAction } from "@/utils/deleteaction";
-//import { db } from "@/utils/db";
 import { useRouter } from "next/navigation";
 
 export function DeletePost({ postID }) {
