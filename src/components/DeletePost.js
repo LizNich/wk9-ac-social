@@ -12,7 +12,7 @@ export function DeletePost({ postID }) {
     console.log("delete post called");
     deleteAction(postID);
     console.log("delete post, delete action finished");
-    router.push("/posts");
+    router.push("/user");
   };
 
   return (

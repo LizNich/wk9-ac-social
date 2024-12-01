@@ -10,5 +10,5 @@ export async function deleteAction(postID) {
   const data = await response.json;
   console.log(data);
 
-  revalidatePath("/posts");
+  revalidatePath("/user");
 }

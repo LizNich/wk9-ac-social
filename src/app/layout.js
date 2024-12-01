@@ -46,19 +46,3 @@ export default function RootLayout({ children }) {
     </ClerkProvider>
   );
 }
-
-//copy paste no change below
-// return (
-//   <ClerkProvider>
-//     <html lang="en">
-//       <body>
-//         <SignedOut>
-//           <SignInButton />
-//         </SignedOut>
-//         <SignedIn>
-//           <UserButton />
-//         </SignedIn>
-//         {children}
-//       </body>
-//     </html>
-//   </ClerkProvider>

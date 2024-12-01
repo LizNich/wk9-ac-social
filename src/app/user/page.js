@@ -5,6 +5,7 @@
 import { db } from "@/utils/db";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { DeletePost } from "@/components/DeletePost";
 
 export default async function SignedinPostsPage() {
   const { userId } = await auth(); // Get the signed-in user's clerk_id
@@ -51,12 +52,12 @@ WHERE posts.clerk_id = '${userId}'
             <br></br>
             <h2>My Favourite... </h2>
             <ul>
-              <p>villager personality: {posts[0].personality}</p>
-              <p>non-playable character: {posts[0].nonplayable}</p>
-              <p>store: {posts[0].store}</p>
-              <p>flower: {posts[0].flower}</p>
-              <p>celebration day: {posts[0].celebration}</p>
-              <p>season: {posts[0].season}</p>
+              <p>🌟villager personality: {posts[0].personality}</p>
+              <p>🌟special character: {posts[0].nonplayable}</p>
+              <p>🌟store: {posts[0].store}</p>
+              <p>🌟flower: {posts[0].flower}</p>
+              <p>🌟celebration day: {posts[0].celebration}</p>
+              <p>🌟season: {posts[0].season}</p>
             </ul>
           </div>
         )}
@@ -76,6 +77,7 @@ WHERE posts.clerk_id = '${userId}'
               <h3 className="text-lg font-semibold"></h3>
               <p>My favourite villager is: {post.villager}</p>
               <p>Why?: {post.reason}</p>
+              <DeletePost postID={post.id} />
             </div>
           ))}
       </div>
