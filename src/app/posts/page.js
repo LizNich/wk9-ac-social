@@ -1,9 +1,8 @@
-// This is -POSTS- page
-// AND contains a link to a new POSTFORM and to a new USERFORM
-// It shows ALL the posts
+// /posts = shows all posts
+// contains a link to components PostForm and UserForm
 
 import PostForm from "@/components/PostForm";
-import UserForm from "@/components/UserForm";
+//import UserForm from "@/components/UserForm";
 import { db } from "@/utils/db";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
@@ -32,24 +31,17 @@ export default async function PostsPage() {
   );
   const numUsers = responseUser.rowCount;
 
-  // renders the page
-  // checks signed-in state. if user is signed-in (===1) shows PostForm. If not show UserForm (to sign-up)
-  // if user is signed-out, tells user to sign-in
+  // renders the page & checks signed-in state.
+  // if user is signed-in (===1) shows PostForm.
+  // is user is not signed-in asks to sign-in to post
   // then displays posts. each post has a link to authors profile, then user_name and content
-
-  // Sort logic
-  // if (searchParams.sort === "asc") {
-  //   posts.sort((a, b) => a.villager.localeCompare(b.villager)); // A-Z
-  // } else if (searchParams.sort === "desc") {
-  //   posts.sort((a, b) => b.villager.localeCompare(a.villager)); // Z-A
-  // }
-
-  // Fetching the comments
 
   return (
     <div>
       <h2>Posts</h2>
-      <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
+      <SignedIn>
+        <PostForm />
+      </SignedIn>
       <SignedOut>
         <Link href="/sign-in">Please sign in to make a post</Link>
       </SignedOut>
@@ -69,4 +61,18 @@ export default async function PostsPage() {
       })}
     </div>
   );
+}
+
+// Sort logic
+// if (searchParams.sort === "asc") {
+//   posts.sort((a, b) => a.villager.localeCompare(b.villager)); // A-Z
+// } else if (searchParams.sort === "desc") {
+//   posts.sort((a, b) => b.villager.localeCompare(a.villager)); // Z-A
+// }
+
+{
+  /* <SignedIn>{numUsers === 1 ? <PostForm /> : <UserForm />}</SignedIn>
+      <SignedOut>
+        <Link href="/sign-in">Please sign in to make a post</Link>
+      </SignedOut> */
 }

@@ -1,4 +1,4 @@
-// This is the -HOME- page
+// = /HOME
 
 import Link from "next/link";
 

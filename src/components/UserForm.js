@@ -1,5 +1,6 @@
-// This is the NEW USER FORM
-// it is found linked into the -POSTS- page
+// This is a new user form. Its not used.
+// Users are asked to sign-in to post. Then transfered to the My Profile page to complete
+// you don't have to complete it - its encouraging
 
 import { db } from "@/utils/db";
 import { auth } from "@clerk/nextjs/server";
@@ -31,7 +32,6 @@ export default async function UserForm() {
   return (
     <form action={handleSubmit}>
       <input name="username" placeholder="Username" />
-      <textarea name="bio" placeholder="Bio"></textarea>
       <button>Submit</button>
     </form>
   );

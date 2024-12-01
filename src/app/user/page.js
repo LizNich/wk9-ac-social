@@ -7,7 +7,7 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { DeletePost } from "@/components/DeletePost";
 
-export default async function SignedinPostsPage() {
+export default async function SignedinProfilePage() {
   const { userId } = await auth(); // Get the signed-in user's clerk_id
 
   // Query for posts AND bio details specific to the signed-in user
@@ -17,7 +17,6 @@ SELECT
   posts.villager, 
   posts.reason,
   users.username,
-  users.bio,
   users.island,
   users.character,
   users.personality,
@@ -30,7 +29,6 @@ SELECT
 FROM posts
 JOIN users ON posts.clerk_id = users.clerk_id
 WHERE posts.clerk_id = '${userId}'
-
   `);
   const posts = responsePosts.rows;
 

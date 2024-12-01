@@ -25,8 +25,8 @@ export default function RootLayout({ children }) {
           <div>
             <header className="bg-[#9DFFB0] text-black text-center mt-4 p-2">
               <nav className="text-xl font-bold">
-                <Link href="/">Welcome Home!</Link> |
-                <Link href="/posts">All Posts</Link> |
+                <Link href="/">Home</Link> |<Link href="/posts">Posts</Link> |{" "}
+                <Link href="/user">Comments</Link> |
                 <Link href="/user">My Profile</Link>
                 <SignedOut>
                   <SignInButton className="bg-gray-500 text-white w-24 py-1 ml-2 rounded text-sm font-bold hover:bg-blue-600 transition" />
